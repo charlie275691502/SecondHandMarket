@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\marketplace.Core\Marketplace.Core.csproj" />
+    <ProjectReference Include="..\Marketplace.Core\Marketplace.Core.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

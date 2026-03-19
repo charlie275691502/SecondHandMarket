@@ -13,6 +13,27 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
 
+  api:
+    build:
+      context: ./backend
+      dockerfile: Marketplace.Api/Dockerfile.dev
+    container_name: marketplace_api
+    ports:
+      - "5000:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=db;Port=5432;Database=marketplace;Username=postgres;Password=postgres
+      - Jwt__Key=o3f1E1//UQjdW5G+Vz0QBuV0VPlWjvemtK5EcH6nOpw=
+      - Jwt__Issuer=Marketplace
+      - Jwt__Audience=MarketplaceUsers
+    volumes:
+      - ./backend/Marketplace.Api:/app/Marketplace.Api
+      - ./backend/Marketplace.Application:/app/Marketplace.Application
+      - ./backend/Marketplace.Infrastructure:/app/Marketplace.Infrastructure
+      - ./backend/Marketplace.Core:/app/Marketplace.Core
+    depends_on:
+      - db
+
   pgadmin:
     image: dpage/pgadmin4
     container_name: pgadmin

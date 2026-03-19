@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Charlie\\Github\\SecondHandMarket\\backend\\marketplace.Core\\Marketplace.Core.csproj": {}
+    "/app/Marketplace.Core/Marketplace.Core.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Charlie\\Github\\SecondHandMarket\\backend\\marketplace.Core\\Marketplace.Core.csproj": {
+    "/app/Marketplace.Core/Marketplace.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Charlie\\Github\\SecondHandMarket\\backend\\marketplace.Core\\Marketplace.Core.csproj",
+        "projectUniqueName": "/app/Marketplace.Core/Marketplace.Core.csproj",
         "projectName": "Marketplace.Core",
-        "projectPath": "C:\\Users\\Charlie\\Github\\SecondHandMarket\\backend\\marketplace.Core\\Marketplace.Core.csproj",
-        "packagesPath": "C:\\Users\\Charlie\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Charlie\\Github\\SecondHandMarket\\backend\\marketplace.Core\\obj\\",
+        "projectPath": "/app/Marketplace.Core/Marketplace.Core.csproj",
+        "packagesPath": "/root/.nuget/packages/",
+        "outputPath": "/app/Marketplace.Core/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Charlie\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/root/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net10.0"
@@ -38,7 +38,7 @@
           "auditLevel": "low",
           "auditMode": "all"
         },
-        "SdkAnalysisLevel": "10.0.100"
+        "SdkAnalysisLevel": "10.0.200"
       },
       "frameworks": {
         "net10.0": {
@@ -65,7 +65,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.103/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/10.0.201/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(,4.7.32767]",
             "Microsoft.VisualBasic": "(,10.4.32767]",
