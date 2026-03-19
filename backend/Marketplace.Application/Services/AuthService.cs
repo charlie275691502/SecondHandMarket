@@ -1,4 +1,5 @@
 using Marketplace.Application.DTOs;
+using Marketplace.Application.Exceptions;
 using Marketplace.Application.Interfaces;
 using Marketplace.Core.Entities;
 
@@ -25,7 +26,7 @@ public class AuthService : IAuthService
         var existingUser = await _userRepository.GetByEmailAsync(request.Email);
         if (existingUser != null)
         {
-            throw new Exception("User already Exists");
+            throw new BadRequestException("User already Exists");
         }
 
         var passwordHash = _passwordHasher.Hash(request.Password);
@@ -54,13 +55,13 @@ public class AuthService : IAuthService
         var user = await _userRepository.GetByEmailAsync(request.Email);
         if (user == null)
         {
-            throw new Exception("Email or Password Incorrect.");
+            throw new UnauthorizedException("Email or Password Incorrect.");
         }
 
         var isVerified = _passwordHasher.Verify(request.Password, user.PasswordHash);
         if (!isVerified)
         {
-            throw new Exception("Email or Password Incorrect.");
+            throw new UnauthorizedException("Email or Password Incorrect.");
         }
 
         var token = _jwtTokenGenerator.GenerateToken(user);

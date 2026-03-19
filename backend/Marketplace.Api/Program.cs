@@ -46,9 +46,9 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
-
 app.MapControllers();
 app.UseHttpsRedirection();
+app.UseMiddleware<ErrorHandlingMiddleware>();
 app.UseAuthentication();
 app.UseAuthorization();
 
