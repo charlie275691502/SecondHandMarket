@@ -37,6 +37,8 @@ builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
 builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
+builder.Services.AddScoped<IListingService, ListingService>();
+builder.Services.AddScoped<IListingRepository, ListingRepository>();
 builder.Services.AddControllers();
 
 var app = builder.Build();

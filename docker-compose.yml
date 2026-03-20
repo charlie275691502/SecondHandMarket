@@ -27,10 +27,7 @@ services:
       - Jwt__Issuer=Marketplace
       - Jwt__Audience=MarketplaceUsers
     volumes:
-      - ./backend/Marketplace.Api:/app/Marketplace.Api
-      - ./backend/Marketplace.Application:/app/Marketplace.Application
-      - ./backend/Marketplace.Infrastructure:/app/Marketplace.Infrastructure
-      - ./backend/Marketplace.Core:/app/Marketplace.Core
+      - ./backend:/app
     depends_on:
       - db
 

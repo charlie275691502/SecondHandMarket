@@ -18,3 +18,16 @@ Content-Type: application/json
     "Email": "Test1@gmail.com",
     "Password": "Test"
 }
+
+###
+POST http://localhost:5000/api/listings
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6Ijk3NGVkZmQ5LTFiNDMtNDEyZC05ZTRmLThiM2JjNWY5N2E5YSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6IlRlc3QxQGdtYWlsLmNvbSIsImV4cCI6MTc3Mzk4MDUzMiwiaXNzIjoiTWFya2V0cGxhY2UiLCJhdWQiOiJNYXJrZXRwbGFjZVVzZXJzIn0.zjvI-Jr4VE5r9Oyol5Uqju9rp_J2bx2ygA3M-kjgDrE
+
+{
+    "Title": "Sofa",
+    "Description": "Brand new Ikea sofa",
+    "Price": 150,
+    "Latitude": 23.5,
+    "Longitude": 15
+}
