@@ -3219,19 +3219,19 @@
     ]
   },
   "packageFolders": {
-    "/root/.nuget/packages/": {}
+    "C:\\Users\\Charlie\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/app/Marketplace.Api/Marketplace.Api.csproj",
+      "projectUniqueName": "C:\\Users\\Charlie\\Github\\SecondHandMarket\\backend\\Marketplace.Api\\Marketplace.Api.csproj",
       "projectName": "Marketplace.Api",
-      "projectPath": "/app/Marketplace.Api/Marketplace.Api.csproj",
-      "packagesPath": "/root/.nuget/packages/",
-      "outputPath": "/app/Marketplace.Api/obj/",
+      "projectPath": "C:\\Users\\Charlie\\Github\\SecondHandMarket\\backend\\Marketplace.Api\\Marketplace.Api.csproj",
+      "packagesPath": "C:\\Users\\Charlie\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Charlie\\Github\\SecondHandMarket\\backend\\Marketplace.Api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/root/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\Charlie\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net10.0"
@@ -3243,11 +3243,11 @@
         "net10.0": {
           "targetAlias": "net10.0",
           "projectReferences": {
-            "/app/Marketplace.Application/Marketplace.Application.csproj": {
-              "projectPath": "/app/Marketplace.Application/Marketplace.Application.csproj"
+            "C:\\Users\\Charlie\\Github\\SecondHandMarket\\backend\\Marketplace.Application\\Marketplace.Application.csproj": {
+              "projectPath": "C:\\Users\\Charlie\\Github\\SecondHandMarket\\backend\\Marketplace.Application\\Marketplace.Application.csproj"
             },
-            "/app/Marketplace.Infrastructure/Marketplace.Infrastructure.csproj": {
-              "projectPath": "/app/Marketplace.Infrastructure/Marketplace.Infrastructure.csproj"
+            "C:\\Users\\Charlie\\Github\\SecondHandMarket\\backend\\Marketplace.Infrastructure\\Marketplace.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\Charlie\\Github\\SecondHandMarket\\backend\\Marketplace.Infrastructure\\Marketplace.Infrastructure.csproj"
             }
           }
         }
@@ -3262,7 +3262,7 @@
         "auditLevel": "low",
         "auditMode": "all"
       },
-      "SdkAnalysisLevel": "10.0.200"
+      "SdkAnalysisLevel": "10.0.100"
     },
     "frameworks": {
       "net10.0": {
@@ -3319,7 +3319,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/10.0.201/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.103/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.AspNetCore": "(,10.0.32767]",
           "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",

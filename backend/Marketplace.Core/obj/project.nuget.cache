@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "sF4IfpeHeyU=",
+  "dgSpecHash": "OeB9qpKeGZU=",
   "success": true,
-  "projectFilePath": "/app/Marketplace.Core/Marketplace.Core.csproj",
+  "projectFilePath": "C:\\Users\\Charlie\\Github\\SecondHandMarket\\backend\\Marketplace.Core\\Marketplace.Core.csproj",
   "expectedPackageFiles": [
-    "/root/.nuget/packages/nettopologysuite/2.6.0/nettopologysuite.2.6.0.nupkg.sha512"
+    "C:\\Users\\Charlie\\.nuget\\packages\\nettopologysuite\\2.6.0\\nettopologysuite.2.6.0.nupkg.sha512"
   ],
   "logs": []
 }

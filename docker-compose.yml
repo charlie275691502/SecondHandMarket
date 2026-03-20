@@ -28,6 +28,10 @@ services:
       - Jwt__Audience=MarketplaceUsers
     volumes:
       - ./backend:/app
+      - api_obj:/app/Marketplace.Api/obj
+      - app_obj:/app/Marketplace.Application/obj
+      - core_obj:/app/Marketplace.Core/obj
+      - infra_obj:/app/Marketplace.Infrastructure/obj
     depends_on:
       - db
 
@@ -44,3 +48,7 @@ services:
 
 volumes:
   pgdata:
+  api_obj:
+  app_obj:
+  core_obj:
+  infra_obj:
