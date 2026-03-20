@@ -29,19 +29,19 @@ public class ListingService : IListingService
             UserId = userId
         };
 
-        await _listingRepository.AddListingAsync(listing);
+        var listingEntity = await _listingRepository.AddListingAsync(listing);
         await _listingRepository.SaveChangesAsync();
 
         return new CreateListingResponseDTO
         {
-            Id = listing.Id,
-            Title = listing.Title,
-            Description = listing.Description,
-            Price = listing.Price,
+            Id = listingEntity.Id,
+            Title = listingEntity.Title,
+            Description = listingEntity.Description,
+            Price = listingEntity.Price,
             Latitude = request.Latitude,
             Longitude = request.Longitude,
-            CreatedAt = listing.CreatedAt,
-            UserName = listing.User.UserName
+            CreatedAt = listingEntity.CreatedAt,
+            UserName = listingEntity.User.UserName
         };
     }
 }

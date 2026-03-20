@@ -29,6 +29,7 @@ public class ListingsController : ControllerBase
         }
 
         var userId = Guid.Parse(userIdClaim);
+
         await _listingService.CreateListingAsync(userId, request);
         return Ok();
     }

@@ -1,6 +1,7 @@
 using Marketplace.Application.Interfaces;
 using Marketplace.Core.Entities;
 using Marketplace.Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 namespace Marketplace.Infrastructure.Repositories;
 
@@ -13,9 +14,10 @@ public class ListingRepository : IListingRepository
         _context = context;
     }
 
-    async Task IListingRepository.AddListingAsync(Listing listing)
+    async Task<Listing> IListingRepository.AddListingAsync(Listing listing)
     {
-        await _context.Listings.AddAsync(listing);
+        var entry = await _context.Listings.AddAsync(listing);
+        return entry.Entity;
     }
 
     async Task IListingRepository.SaveChangesAsync()
