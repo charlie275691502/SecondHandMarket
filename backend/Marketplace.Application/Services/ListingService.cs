@@ -16,7 +16,7 @@ public class ListingService : IListingService
         _listingRepository = listingRepository;
     }
 
-    async Task<CreateListingResponseDTO> IListingService.CreateListingAsync(Guid userId, CreateListingRequestDTO request)
+    async Task<ListingResponseDTO> IListingService.CreateListingAsync(Guid userId, CreateListingRequestDTO request)
     {
         var listing = new Listing
         {
@@ -32,16 +32,43 @@ public class ListingService : IListingService
         var listingEntity = await _listingRepository.AddListingAsync(listing);
         await _listingRepository.SaveChangesAsync();
 
-        return new CreateListingResponseDTO
+        return new ListingResponseDTO
         {
             Id = listingEntity.Id,
             Title = listingEntity.Title,
             Description = listingEntity.Description,
             Price = listingEntity.Price,
-            Latitude = request.Latitude,
-            Longitude = request.Longitude,
+            Location = listingEntity.Location,
             CreatedAt = listingEntity.CreatedAt,
             UserName = listingEntity.User.UserName
         };
+    }
+
+    async Task<List<ListingResponseDTO>> IListingService.GetListingsAsync(
+        string? keyword = null,
+        double? latitude = null,
+        double? longitude = null,
+        double? radiusKm = null,
+        int skip = 0,
+        int take = 20)
+    {
+        var listings = await _listingRepository.GetListingsAsync(
+            keyword,
+            latitude,
+            longitude,
+            radiusKm,
+            skip,
+            take);
+
+        return listings.Select(listing => new ListingResponseDTO
+        {
+            Id = listing.Id,
+            Title = listing.Title,
+            Description = listing.Description,
+            Price = listing.Price,
+            Location = listing.Location,
+            CreatedAt = listing.CreatedAt,
+            UserName = listing.User.UserName,
+        }).ToList();
     }
 }

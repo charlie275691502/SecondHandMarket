@@ -22,7 +22,7 @@ Content-Type: application/json
 ###
 POST http://localhost:5000/api/listings
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6Ijk3NGVkZmQ5LTFiNDMtNDEyZC05ZTRmLThiM2JjNWY5N2E5YSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6IlRlc3QxQGdtYWlsLmNvbSIsImV4cCI6MTc3Mzk4Njk5NCwiaXNzIjoiTWFya2V0cGxhY2UiLCJhdWQiOiJNYXJrZXRwbGFjZVVzZXJzIn0.jqTTUPxG8bc6mlgfYLxBrTUb6hgPVXKxYyUWKAiP-OU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6Ijk3NGVkZmQ5LTFiNDMtNDEyZC05ZTRmLThiM2JjNWY5N2E5YSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6IlRlc3QxQGdtYWlsLmNvbSIsImV4cCI6MTc3NTM2OTI3MCwiaXNzIjoiTWFya2V0cGxhY2UiLCJhdWQiOiJNYXJrZXRwbGFjZVVzZXJzIn0.t2YajeQTG9EafjSzumX9cKKocOmuVSulGBNC2cpTUek
 
 {
     "Title": "Sofa",
@@ -31,3 +31,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hc
     "Latitude": 23.5,
     "Longitude": 15
 }
+
+###
+GET http://localhost:5000/api/listings?latitude=23.4&longitude=15.209900&radiusKm=500

@@ -10,11 +10,11 @@ namespace Marketplace.Api.Controllers;
 [Authorize]
 [ApiController]
 [Route("api/listings")]
-public class ListingsController : ControllerBase
+public class ListingController : ControllerBase
 {
     private readonly IListingService _listingService;
 
-    public ListingsController(IListingService listingService)
+    public ListingController(IListingService listingService)
     {
         _listingService = listingService;
     }
@@ -32,5 +32,26 @@ public class ListingsController : ControllerBase
 
         await _listingService.CreateListingAsync(userId, request);
         return Ok();
+    }
+
+    [AllowAnonymous]
+    [HttpGet]
+    public async Task<IActionResult> GetList(
+        [FromQuery] string? keyword,
+        [FromQuery] double? latitude,
+        [FromQuery] double? longitude,
+        [FromQuery] double? radiusKm,
+        [FromQuery] int skip = 0,
+        [FromQuery] int take = 20)
+    {
+        var listing = await _listingService.GetListingsAsync(
+            keyword,
+            latitude,
+            longitude,
+            radiusKm,
+            skip,
+            take);
+
+        return Ok(listing);
     }
 }
