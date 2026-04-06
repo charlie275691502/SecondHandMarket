@@ -40,6 +40,15 @@ builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
 builder.Services.AddScoped<IListingService, ListingService>();
 builder.Services.AddScoped<IListingRepository, ListingRepository>();
 builder.Services.AddControllers();
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
 builder.Services.AddLogging(logging =>
 {
     logging.ClearProviders();
@@ -53,6 +62,7 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
+app.UseCors();
 app.MapControllers();
 app.UseHttpsRedirection();
 app.UseMiddleware<ErrorHandlingMiddleware>();
