@@ -2,8 +2,8 @@
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /app
 
-COPY ../ ./
-WORKDIR /app/Marketplace.Api
+COPY . .
+WORKDIR /app/backend/Marketplace.Api
 
 RUN dotnet restore
 RUN dotnet publish -c Release -o /out
