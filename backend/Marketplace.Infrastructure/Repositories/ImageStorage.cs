@@ -29,6 +29,17 @@ public class ImageStorage : IImageStorage
         };
 
         var result = await _cloudinary.UploadAsync(uploadParams);
+
+        if (result.Error != null)
+        {
+            throw new Exception($"Cloudinary upload failed: {result.Error.Message}");
+        }
+
+        if (result.SecureUrl == null)
+        {
+            throw new Exception("Cloudinary upload failed: SecureUrl is null");
+        }
+
         return result.SecureUrl.ToString();
     }
 }
