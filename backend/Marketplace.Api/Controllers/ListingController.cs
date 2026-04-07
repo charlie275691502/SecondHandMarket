@@ -34,8 +34,8 @@ public class ListingController : ControllerBase
 
         var userId = Guid.Parse(userIdClaim);
 
-        await _listingService.CreateListingAsync(userId, request);
-        return Ok();
+        var listing = await _listingService.CreateListingAsync(userId, request);
+        return Ok(listing);
     }
 
     [HttpPost("{id}/images")]
