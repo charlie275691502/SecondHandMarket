@@ -40,8 +40,8 @@ Content-Type: application/json
 
 ###
 
-### Create Listing (local)
-POST {{baseUrl}}/api/listings
+### Create Listing (prod)
+POST {{prodUrl}}/api/listings
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
@@ -52,6 +52,15 @@ Authorization: Bearer {{token}}
     "Latitude": 23.5,
     "Longitude": 15
 }
+
+###
+
+### Create Listings Image (prod)
+POST {{prodUrl}}/api/listings/{id}/images
+Authorization: Bearer {{token}}
+Content-Type: multipart/form-data
+
+file=@./cake.jpg
 
 ###
 

@@ -13,10 +13,14 @@ namespace Marketplace.Api.Controllers;
 public class ListingController : ControllerBase
 {
     private readonly IListingService _listingService;
+    private readonly IListingImageService _listingImageService;
 
-    public ListingController(IListingService listingService)
+    public ListingController(
+        IListingService listingService,
+        IListingImageService listingImageService)
     {
         _listingService = listingService;
+        _listingImageService = listingImageService;
     }
 
     [HttpPost]
@@ -32,6 +36,13 @@ public class ListingController : ControllerBase
 
         await _listingService.CreateListingAsync(userId, request);
         return Ok();
+    }
+
+    [HttpPost("{id}/images")]
+    public async Task<IActionResult> UploadImage(Guid id, IFormFile file)
+    {
+        var listingImage = await _listingImageService.CreateListingImageAsync(id, file);
+        return Ok(listingImage);
     }
 
     [AllowAnonymous]
