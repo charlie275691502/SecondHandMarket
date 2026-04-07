@@ -1,14 +1,12 @@
-@baseUrl = http://localhost:5000
-@prodUrl = https://secondhandmarket-iskc.onrender.com
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
-
-### Health (local)
-GET {{baseUrl}}/api/health
+# @url = http://localhost:5000
+@url = https://secondhandmarket-iskc.onrender.com
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjU1MjY1NDdhLTA2YWUtNGQwNC04M2MyLWYyNGUxYmU1ZGY4OCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6IlRlc3QxQGdtYWlsLmNvbSIsImV4cCI6MTc3NTU2NDA0MCwiaXNzIjoiTWFya2V0cGxhY2UiLCJhdWQiOiJNYXJrZXRwbGFjZVVzZXJzIn0.5nXO8Y1lzqej8qc08mkK3kExio5rAoiQqQ-Zf111204
 
 ###
+GET {{url}}/api/health
 
-### Register (prod)
-POST {{prodUrl}}/api/auth/register
+###
+POST {{url}}/api/auth/register
 Content-Type: application/json
 
 {
@@ -17,20 +15,7 @@ Content-Type: application/json
 }
 
 ###
-
-### Register (local)
-POST {{baseUrl}}/api/auth/register
-Content-Type: application/json
-
-{
-    "Email": "Test2@gmail.com",
-    "Password": "Test"
-}
-
-###
-
-### Login (local)
-POST {{baseUrl}}/api/auth/login
+POST {{url}}/api/auth/login
 Content-Type: application/json
 
 {
@@ -39,9 +24,7 @@ Content-Type: application/json
 }
 
 ###
-
-### Create Listing (prod)
-POST {{prodUrl}}/api/listings
+POST {{url}}/api/listings
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
@@ -54,15 +37,11 @@ Authorization: Bearer {{token}}
 }
 
 ###
-
-### Create Listings Image (prod)
-POST {{prodUrl}}/api/listings/{id}/images
+POST {{url}}/api/listings/{id}/images
 Authorization: Bearer {{token}}
 Content-Type: multipart/form-data
 
 file=@./cake.jpg
 
 ###
-
-### Search Listings (local)
-GET {{baseUrl}}/api/listings?latitude=23.4&longitude=15.209900&radiusKm=500
+GET {{url}}/api/listings?latitude=23.4&longitude=15.209900&radiusKm=500
