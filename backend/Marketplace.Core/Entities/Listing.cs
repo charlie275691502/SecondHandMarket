@@ -18,7 +18,7 @@ public class Listing
     public Point Location { get; set; } = null!;
     public Guid UserId { get; set; }
     public User User { get; set; } = null!;
-    public Guid CoverImageId { get; set; }
-    public ListingImage CoverImage { get; set; } = null!;
+    public Guid? CoverImageId { get; set; }
+    public ListingImage? CoverImage { get; set; }
     public List<ListingImage> Images { get; set; } = new();
 }

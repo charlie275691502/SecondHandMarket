@@ -13,8 +13,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Marketplace.Infrastructure.Migrations
 {
     [DbContext(typeof(MarketplaceDbContext))]
-    [Migration("20260413080214_AddListingStatus")]
-    partial class AddListingStatus
+    [Migration("20260420112155_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,6 +31,9 @@ namespace Marketplace.Infrastructure.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid?>("CoverImageId")
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
@@ -60,6 +63,8 @@ namespace Marketplace.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CoverImageId");
+
                     b.HasIndex("UserId");
 
                     b.ToTable("Listings");
@@ -74,9 +79,6 @@ namespace Marketplace.Infrastructure.Migrations
                     b.Property<Guid>("ListingId")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid?>("ListingId1")
-                        .HasColumnType("uuid");
-
                     b.Property<string>("Url")
                         .IsRequired()
                         .HasColumnType("text");
@@ -84,9 +86,6 @@ namespace Marketplace.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ListingId");
-
-                    b.HasIndex("ListingId1")
-                        .IsUnique();
 
                     b.ToTable("ListingImages");
                 });
@@ -149,11 +148,18 @@ namespace Marketplace.Infrastructure.Migrations
 
             modelBuilder.Entity("Marketplace.Core.Entities.Listing", b =>
                 {
+                    b.HasOne("Marketplace.Core.Entities.ListingImage", "CoverImage")
+                        .WithMany()
+                        .HasForeignKey("CoverImageId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
                     b.HasOne("Marketplace.Core.Entities.User", "User")
                         .WithMany("Listings")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("CoverImage");
 
                     b.Navigation("User");
                 });
@@ -166,18 +172,11 @@ namespace Marketplace.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Marketplace.Core.Entities.Listing", null)
-                        .WithOne("CoverImage")
-                        .HasForeignKey("Marketplace.Core.Entities.ListingImage", "ListingId1");
-
                     b.Navigation("Listing");
                 });
 
             modelBuilder.Entity("Marketplace.Core.Entities.Listing", b =>
                 {
-                    b.Navigation("CoverImage")
-                        .IsRequired();
-
                     b.Navigation("Images");
                 });
 

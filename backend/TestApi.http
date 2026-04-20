@@ -1,7 +1,7 @@
 @url = http://localhost:5000
 # @url = https://secondhandmarket-iskc.onrender.com
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6Ijk3NGVkZmQ5LTFiNDMtNDEyZC05ZTRmLThiM2JjNWY5N2E5YSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6IlRlc3QxQGdtYWlsLmNvbSIsImV4cCI6MTc3NjA3MTA2MywiaXNzIjoiTWFya2V0cGxhY2UiLCJhdWQiOiJNYXJrZXRwbGFjZVVzZXJzIn0.qKTP6kyoBj6ISwxUp1N0mQ-XdeOA6W4KTYsd02uxXcI
-@listing_id = a7896142-daa6-415f-b188-48dff55daf43
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjE1NTdiNzVhLTU5ODQtNDRmNy1iM2Y4LTk4Y2IyNjg3NjRkYSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6IlRlc3QxQGdtYWlsLmNvbSIsImV4cCI6MTc3NjY5NjgyNSwiaXNzIjoiTWFya2V0cGxhY2UiLCJhdWQiOiJNYXJrZXRwbGFjZVVzZXJzIn0.C1P_8Fnah9pjjvB6jfptlhy_KDyDAJVtQICRh8Rrc94
+@listing_id = f71c0a3f-703b-4fd8-a7f7-58ce1d29d2cc
 
 ###
 GET {{url}}/api/health
@@ -29,7 +29,7 @@ POST {{url}}/api/listings
 Authorization: Bearer {{token}}
 
 ###
-PUT {{url}}/api/listings
+PUT {{url}}/api/listings/{{listing_id}}
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
@@ -38,8 +38,13 @@ Authorization: Bearer {{token}}
     "Description": "Brand new Ikea sofa",
     "Price": 150,
     "Latitude": 23.5,
-    "Longitude": 15
+    "Longitude": 15,
+    "CoverImageUrl": "https://res.cloudinary.com/dis7dwqvp/image/upload/v1776693352/cyp2ayhzhn6shbfh5dqk.png"
 }
+
+###
+PUT {{url}}/api/listings/{{listing_id}}/publish
+Authorization: Bearer {{token}}
 
 ###
 POST {{url}}/api/listings/{{listing_id}}/images
@@ -47,11 +52,14 @@ Authorization: Bearer {{token}}
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="file"; filename="cake.png"
+Content-Disposition: form-data; name="file"; filename="cake2.png"
 Content-Type: image/png
 
 < ./cake.png
 ------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+###
+GET {{url}}/api/listings
 
 ###
 GET {{url}}/api/listings?latitude=23.4&longitude=15.209900&radiusKm=500

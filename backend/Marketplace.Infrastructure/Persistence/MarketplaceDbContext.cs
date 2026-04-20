@@ -72,6 +72,11 @@ public class MarketplaceDbContext : DbContext
         entity.Property(x => x.Location)
             .HasColumnType("geography(Point, 4326)");
 
+        entity.HasOne(l => l.CoverImage)
+            .WithMany()
+            .HasForeignKey(l => l.CoverImageId)
+            .OnDelete(DeleteBehavior.SetNull);
+
         entity.HasMany(x => x.Images)
             .WithOne(y => y.Listing)
             .HasForeignKey(y => y.ListingId)

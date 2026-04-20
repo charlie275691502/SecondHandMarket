@@ -30,10 +30,7 @@ namespace Marketplace.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("CoverImageId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("CoverImageId1")
+                    b.Property<Guid?>("CoverImageId")
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
@@ -63,7 +60,7 @@ namespace Marketplace.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CoverImageId1");
+                    b.HasIndex("CoverImageId");
 
                     b.HasIndex("UserId");
 
@@ -150,9 +147,8 @@ namespace Marketplace.Infrastructure.Migrations
                 {
                     b.HasOne("Marketplace.Core.Entities.ListingImage", "CoverImage")
                         .WithMany()
-                        .HasForeignKey("CoverImageId1")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CoverImageId")
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("Marketplace.Core.Entities.User", "User")
                         .WithMany("Listings")

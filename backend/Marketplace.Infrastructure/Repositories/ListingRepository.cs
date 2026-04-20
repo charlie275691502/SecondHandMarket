@@ -36,6 +36,7 @@ public class ListingRepository : IListingRepository
 
         return await _context.Listings
             .Include(l => l.User)
+            .Include(l => l.CoverImage)
             .Include(l => l.Images)
             .FirstAsync(l => l.Id == emptyListing.Id);
     }
@@ -50,6 +51,7 @@ public class ListingRepository : IListingRepository
     {
         var listing = await _context.Listings
             .Include(l => l.User)
+            .Include(l => l.CoverImage)
             .Include(l => l.Images)
             .FirstAsync(l => l.Id == listingId);
 
@@ -87,6 +89,7 @@ public class ListingRepository : IListingRepository
         var query = _context.Listings
             .Where(listing => listing.Status == Listing.ListingStatus.Published)
             .Include(l => l.User)
+            .Include(l => l.CoverImage)
             .Include(l => l.Images)
             .AsNoTracking();
         if (!string.IsNullOrWhiteSpace(keyword))
@@ -114,6 +117,7 @@ public class ListingRepository : IListingRepository
     {
         return await _context.Listings
             .Include(l => l.User)
+            .Include(l => l.CoverImage)
             .Include(l => l.Images)
             .FirstAsync(l => l.Id == listingId);
     }

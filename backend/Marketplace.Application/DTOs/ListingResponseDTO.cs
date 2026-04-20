@@ -32,6 +32,7 @@ public class ListingResponseDTO
         Location = listing.Location;
         CreatedAt = listing.CreatedAt;
         UserName = listing.User.UserName;
+        CoverImageUrl = listing.CoverImage?.Url ?? string.Empty;
         ImageUrls = listing.Images.Select(listingImage => listingImage.Url).ToList();
     }
 }
