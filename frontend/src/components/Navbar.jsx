@@ -11,37 +11,66 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
-      <Link to="/listings" className="text-xl font-bold text-indigo-600">
+    <nav
+      className="sticky top-0 z-50 bg-white flex items-center justify-between px-6 py-4"
+      style={{ borderBottom: '1px solid #e8e8e8' }}
+    >
+      <Link
+        to="/listings"
+        className="font-bold text-xl tracking-tight"
+        style={{ color: '#ff385c', letterSpacing: '-0.44px' }}
+      >
         SecondHand Market
       </Link>
-      <div className="flex gap-4 items-center">
+
+      <div className="flex items-center gap-4">
         {isAuthenticated ? (
           <>
-            <Link to="/listings" className="text-gray-600 hover:text-gray-900">
+            <Link
+              to="/listings"
+              className="text-sm font-medium transition-colors"
+              style={{ color: '#222222' }}
+              onMouseEnter={e => (e.target.style.color = '#6a6a6a')}
+              onMouseLeave={e => (e.target.style.color = '#222222')}
+            >
               Listings
             </Link>
             <Link
               to="/create-listing"
-              className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700"
+              className="text-sm font-medium text-white px-6 py-2.5 rounded-lg transition-colors"
+              style={{ background: '#222222', borderRadius: '8px' }}
+              onMouseEnter={e => (e.currentTarget.style.background = '#ff385c')}
+              onMouseLeave={e => (e.currentTarget.style.background = '#222222')}
             >
               + Sell
             </Link>
             <button
               onClick={handleLogout}
-              className="text-gray-500 hover:text-gray-800 text-sm"
+              className="text-sm transition-colors"
+              style={{ color: '#6a6a6a' }}
+              onMouseEnter={e => (e.target.style.color = '#222222')}
+              onMouseLeave={e => (e.target.style.color = '#6a6a6a')}
             >
               Logout
             </button>
           </>
         ) : (
           <>
-            <Link to="/login" className="text-gray-600 hover:text-gray-900">
+            <Link
+              to="/login"
+              className="text-sm font-medium transition-colors"
+              style={{ color: '#222222' }}
+              onMouseEnter={e => (e.target.style.color = '#6a6a6a')}
+              onMouseLeave={e => (e.target.style.color = '#222222')}
+            >
               Login
             </Link>
             <Link
               to="/register"
-              className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700"
+              className="text-sm font-medium text-white px-6 py-2.5 transition-colors"
+              style={{ background: '#222222', borderRadius: '8px' }}
+              onMouseEnter={e => (e.currentTarget.style.background = '#ff385c')}
+              onMouseLeave={e => (e.currentTarget.style.background = '#222222')}
             >
               Register
             </Link>

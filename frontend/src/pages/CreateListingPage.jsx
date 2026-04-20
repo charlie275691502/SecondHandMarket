@@ -4,6 +4,13 @@ import { useNavigate } from 'react-router-dom'
 import { createListing } from '../services/api'
 
 const INITIAL = { Title: '', Description: '', Price: '', Latitude: '', Longitude: '' }
+const CARD_SHADOW = 'rgba(0,0,0,0.02) 0px 0px 0px 1px, rgba(0,0,0,0.04) 0px 2px 6px, rgba(0,0,0,0.1) 0px 4px 8px'
+
+const inputStyle = {
+  color: '#222222',
+  borderColor: '#c1c1c1',
+  borderRadius: '8px',
+}
 
 export default function CreateListingPage() {
   const navigate = useNavigate()
@@ -27,16 +34,21 @@ export default function CreateListingPage() {
     })
   }
 
-  function field(label, name, type = 'text', extra = {}) {
+  function Field({ label, name, type = 'text', extra = {} }) {
     return (
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
+        <label className="block text-sm font-medium mb-1.5" style={{ color: '#222222' }}>
+          {label}
+        </label>
         <input
           type={type}
           required
           value={form[name]}
           onChange={(e) => setForm({ ...form, [name]: e.target.value })}
-          className="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          className="w-full text-sm outline-none px-4 py-3 border"
+          style={inputStyle}
+          onFocus={e => (e.target.style.borderColor = '#ff385c')}
+          onBlur={e => (e.target.style.borderColor = '#c1c1c1')}
           {...extra}
         />
       </div>
@@ -44,37 +56,62 @@ export default function CreateListingPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
-      <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 w-full max-w-lg">
-        <h1 className="text-2xl font-bold text-gray-900 mb-6">Create Listing</h1>
+    <div className="min-h-screen flex items-center justify-center px-4 py-12" style={{ background: '#ffffff' }}>
+      <div
+        className="bg-white w-full max-w-lg p-8"
+        style={{ borderRadius: '20px', boxShadow: CARD_SHADOW }}
+      >
+        <h1
+          className="font-bold mb-6"
+          style={{ color: '#222222', fontSize: '22px', letterSpacing: '-0.44px', lineHeight: '1.18' }}
+        >
+          Create a listing
+        </h1>
 
         {error && (
-          <p className="text-red-600 text-sm bg-red-50 p-3 rounded-lg mb-4">{error}</p>
+          <div
+            className="text-sm p-3 mb-5 rounded-lg"
+            style={{ color: '#c13515', background: '#fff5f5', border: '1px solid #fecaca' }}
+          >
+            {error}
+          </div>
         )}
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          {field('Title', 'Title')}
+        <form onSubmit={handleSubmit} className="space-y-5">
+          <Field label="Title" name="Title" />
+
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+            <label className="block text-sm font-medium mb-1.5" style={{ color: '#222222' }}>
+              Description
+            </label>
             <textarea
               required
-              rows={3}
+              rows={4}
               value={form.Description}
               onChange={(e) => setForm({ ...form, Description: e.target.value })}
-              className="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-none"
+              className="w-full text-sm outline-none px-4 py-3 border resize-none"
+              style={inputStyle}
+              onFocus={e => (e.target.style.borderColor = '#ff385c')}
+              onBlur={e => (e.target.style.borderColor = '#c1c1c1')}
             />
           </div>
-          {field('Price ($)', 'Price', 'number', { min: '0', step: '0.01' })}
+
+          <Field label="Price ($)" name="Price" type="number" extra={{ min: '0', step: '0.01' }} />
+
           <div className="grid grid-cols-2 gap-4">
-            {field('Latitude', 'Latitude', 'number', { step: 'any' })}
-            {field('Longitude', 'Longitude', 'number', { step: 'any' })}
+            <Field label="Latitude" name="Latitude" type="number" extra={{ step: 'any' }} />
+            <Field label="Longitude" name="Longitude" type="number" extra={{ step: 'any' }} />
           </div>
+
           <button
             type="submit"
             disabled={mutation.isPending}
-            className="w-full bg-indigo-600 text-white py-2.5 rounded-lg font-medium hover:bg-indigo-700 disabled:opacity-50 mt-2"
+            className="w-full text-white font-medium text-base py-3 transition-colors disabled:opacity-50 mt-2"
+            style={{ background: '#222222', borderRadius: '8px' }}
+            onMouseEnter={e => !mutation.isPending && (e.currentTarget.style.background = '#ff385c')}
+            onMouseLeave={e => (e.currentTarget.style.background = '#222222')}
           >
-            {mutation.isPending ? 'Publishing...' : 'Publish Listing'}
+            {mutation.isPending ? 'Publishing…' : 'Publish listing'}
           </button>
         </form>
       </div>
