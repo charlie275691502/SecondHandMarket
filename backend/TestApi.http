@@ -1,6 +1,7 @@
-# @url = http://localhost:5000
-@url = https://secondhandmarket-iskc.onrender.com
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjU1MjY1NDdhLTA2YWUtNGQwNC04M2MyLWYyNGUxYmU1ZGY4OCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6IlRlc3QxQGdtYWlsLmNvbSIsImV4cCI6MTc3NTU2NDA0MCwiaXNzIjoiTWFya2V0cGxhY2UiLCJhdWQiOiJNYXJrZXRwbGFjZVVzZXJzIn0.5nXO8Y1lzqej8qc08mkK3kExio5rAoiQqQ-Zf111204
+@url = http://localhost:5000
+# @url = https://secondhandmarket-iskc.onrender.com
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6Ijk3NGVkZmQ5LTFiNDMtNDEyZC05ZTRmLThiM2JjNWY5N2E5YSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6IlRlc3QxQGdtYWlsLmNvbSIsImV4cCI6MTc3NjA3MTA2MywiaXNzIjoiTWFya2V0cGxhY2UiLCJhdWQiOiJNYXJrZXRwbGFjZVVzZXJzIn0.qKTP6kyoBj6ISwxUp1N0mQ-XdeOA6W4KTYsd02uxXcI
+@listing_id = a7896142-daa6-415f-b188-48dff55daf43
 
 ###
 GET {{url}}/api/health
@@ -25,6 +26,10 @@ Content-Type: application/json
 
 ###
 POST {{url}}/api/listings
+Authorization: Bearer {{token}}
+
+###
+PUT {{url}}/api/listings
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
@@ -37,11 +42,16 @@ Authorization: Bearer {{token}}
 }
 
 ###
-POST {{url}}/api/listings/{id}/images
+POST {{url}}/api/listings/{{listing_id}}/images
 Authorization: Bearer {{token}}
-Content-Type: multipart/form-data
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 
-file=@./cake.jpg
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="cake.png"
+Content-Type: image/png
+
+< ./cake.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
 
 ###
 GET {{url}}/api/listings?latitude=23.4&longitude=15.209900&radiusKm=500

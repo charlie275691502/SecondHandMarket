@@ -16,32 +16,24 @@ public class ListingService : IListingService
         _listingRepository = listingRepository;
     }
 
-    async Task<ListingResponseDTO> IListingService.CreateListingAsync(Guid userId, CreateListingRequestDTO request)
+    async Task<ListingResponseDTO> IListingService.CreateEmptyListingAsync(Guid userId)
     {
-        var listing = new Listing
-        {
-            Id = Guid.NewGuid(),
-            Title = request.Title,
-            Description = request.Description,
-            Price = request.Price,
-            CreatedAt = DateTime.UtcNow,
-            Location = new Point(request.Longitude, request.Latitude),
-            UserId = userId
-        };
+        var listingEntity = await _listingRepository.AddEmptyListingAsync(userId);
 
-        var listingEntity = await _listingRepository.AddListingAsync(listing);
-        await _listingRepository.SaveChangesAsync();
+        return new ListingResponseDTO(listingEntity);
+    }
 
-        return new ListingResponseDTO
-        {
-            Id = listingEntity.Id,
-            Title = listingEntity.Title,
-            Description = listingEntity.Description,
-            Price = listingEntity.Price,
-            Location = listingEntity.Location,
-            CreatedAt = listingEntity.CreatedAt,
-            UserName = listingEntity.User.UserName
-        };
+    async Task<ListingResponseDTO> IListingService.UpdateListingAsync(Guid userId, Guid listingId, UpdateListingRequestDTO request)
+    {
+        var listingEntity = await _listingRepository.UpdateListingAsync(
+            listingId,
+            request.Title,
+            request.Description,
+            request.Price,
+            new Point(request.Longitude, request.Latitude),
+            request.CoverImageUrl);
+
+        return new ListingResponseDTO(listingEntity);
     }
 
     async Task<List<ListingResponseDTO>> IListingService.GetListingsAsync(
@@ -60,15 +52,20 @@ public class ListingService : IListingService
             skip,
             take);
 
-        return listings.Select(listing => new ListingResponseDTO
+        return listings.Select(listing => new ListingResponseDTO(listing)).ToList();
+    }
+
+    async Task<ListingResponseDTO?> IListingService.PublishListingAsync(Guid userId, Guid listingId)
+    {
+        var listing = await _listingRepository.GetListingByIdAsync(listingId);
+        if (listing == null)
         {
-            Id = listing.Id,
-            Title = listing.Title,
-            Description = listing.Description,
-            Price = listing.Price,
-            Location = listing.Location,
-            CreatedAt = listing.CreatedAt,
-            UserName = listing.User.UserName,
-        }).ToList();
+            return null;
+        }
+
+        listing.Status = Listing.ListingStatus.Published;
+        await _listingRepository.SaveChangesAsync();
+
+        return new ListingResponseDTO(listing);
     }
 }

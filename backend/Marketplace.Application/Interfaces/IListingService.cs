@@ -1,10 +1,12 @@
 using Marketplace.Application.DTOs;
+using Marketplace.Core.Entities;
 
 namespace Marketplace.Application.Interfaces;
 
 public interface IListingService
 {
-    Task<ListingResponseDTO> CreateListingAsync(Guid userId, CreateListingRequestDTO request);
+    Task<ListingResponseDTO> CreateEmptyListingAsync(Guid userId);
+    Task<ListingResponseDTO> UpdateListingAsync(Guid userId, Guid listingId, UpdateListingRequestDTO request);
     Task<List<ListingResponseDTO>> GetListingsAsync(
         string? keyword = null,
         double? latitude = null,
@@ -12,4 +14,5 @@ public interface IListingService
         double? radiusKm = null,
         int skip = 0,
         int take = 20);
+    Task<ListingResponseDTO?> PublishListingAsync(Guid userId, Guid listingId);
 }

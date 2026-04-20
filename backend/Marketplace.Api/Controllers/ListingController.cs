@@ -24,7 +24,7 @@ public class ListingController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create(CreateListingRequestDTO request)
+    public async Task<IActionResult> CreateEmpty()
     {
         var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         if (userIdClaim == null)
@@ -34,7 +34,22 @@ public class ListingController : ControllerBase
 
         var userId = Guid.Parse(userIdClaim);
 
-        var listing = await _listingService.CreateListingAsync(userId, request);
+        var listing = await _listingService.CreateEmptyListingAsync(userId);
+        return Ok(listing);
+    }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Update(Guid id, UpdateListingRequestDTO request)
+    {
+        var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        if (userIdClaim == null)
+        {
+            throw new UnauthorizedException("Unauthorized");
+        }
+
+        var userId = Guid.Parse(userIdClaim);
+
+        var listing = await _listingService.UpdateListingAsync(userId, id, request);
         return Ok(listing);
     }
 
@@ -63,6 +78,21 @@ public class ListingController : ControllerBase
             skip,
             take);
 
+        return Ok(listing);
+    }
+
+    [HttpPut("{id}/publish")]
+    public async Task<IActionResult> Publish(Guid id)
+    {
+        var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        if (userIdClaim == null)
+        {
+            throw new UnauthorizedException("Unauthorized");
+        }
+
+        var userId = Guid.Parse(userIdClaim);
+
+        var listing = await _listingService.PublishListingAsync(userId, id);
         return Ok(listing);
     }
 }

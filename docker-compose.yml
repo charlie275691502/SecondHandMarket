@@ -26,6 +26,9 @@ services:
       - Jwt__Key=o3f1E1//UQjdW5G+Vz0QBuV0VPlWjvemtK5EcH6nOpw=
       - Jwt__Issuer=Marketplace
       - Jwt__Audience=MarketplaceUsers
+      - Cloudinary__ApiKey=385418248276777
+      - Cloudinary__ApiSecret=r39vOJeJRlHpvQpy3WRK1A--w4w
+      - Cloudinary__CloudName=dis7dwqvp
     volumes:
       - ./backend:/app
       - api_obj:/app/Marketplace.Api/obj
